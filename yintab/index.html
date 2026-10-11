@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yintab Strategy Consults — Peace, Governance, Humanitarianism</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#122a52;
+  --navy-deep:#0b1c38;
+  --navy-light:#1e3a5f;
+  --gold:#b8912f;
+  --gold-light:#d4a856;
+  --cream:#f6f4ef;
+  --ink:#20242c;
+  --rule:#d8d2c4;
+  --light-gray:#8a8a8a;
+  color-scheme: light;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-padding-top:76px;}
+body{
+  font-family:'Inter', -apple-system, sans-serif;
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.6;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+h1,h2,h3,h4{font-family:'Source Serif 4', Georgia, serif; font-weight:600; color:var(--navy-deep);}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;height:auto;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+/* Collapsible Navbar */
+header{
+  position:sticky;top:0;z-index:20;
+  background:var(--navy-deep);
+  padding-top:env(safe-area-inset-top,0px);
+  border-bottom:3px solid var(--gold);
+}
+.navbar{
+  max-width:1080px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;
+  gap:14px;
+}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.brand-logo{
+  height:40px;width:40px;
+  background:linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:var(--navy-deep);font-size:1rem;
+  flex-shrink:0;
+}
+.brand h2{color:#fff;font-family:'Source Serif 4',serif;font-size:1.5rem;font-weight:700;margin:0;line-height:1.2;}
+
+/* Navigation */
+nav{display:flex;gap:18px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+nav::-webkit-scrollbar{display:none;}
+nav a{color:#e7e3d6;text-decoration:none;font-size:.9rem;white-space:nowrap;flex-shrink:0;transition:color .2s;}
+nav a:hover{color:var(--gold);}
+
+/* Hamburger Menu */
+.hamburger{
+  display:none;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:1.5rem;
+  cursor:pointer;
+  padding:8px;
+  transition:all .3s;
+  flex-shrink:0;
+}
+.hamburger.active span{
+  background:var(--gold);
+}
+
+/* Mobile Nav */
+.mobile-nav{
+  display:none;
+  position:absolute;
+  top:60px;
+  left:0;
+  right:0;
+  background:var(--navy-deep);
+  border-bottom:3px solid var(--gold);
+  flex-direction:column;
+  gap:0;
+  padding:12px 0;
+  max-height:calc(100vh - 60px);
+  overflow-y:auto;
+}
+.mobile-nav.active{
+  display:flex;
+}
+.mobile-nav a{
+  color:#e7e3d6;
+  padding:14px 20px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  text-decoration:none;
+  font-size:.95rem;
+  transition:all .2s;
+}
+.mobile-nav a:hover{
+  background:rgba(184,145,47,.1);
+  color:var(--gold);
+}
+
+@media (max-width:768px){
+  .hamburger{display:block;}
+  nav{display:none;}
+  header{padding-top:env(safe-area-inset-top,0px);}
+}
+@media (max-width:640px){
+  .navbar{padding:10px 16px;gap:12px;}
+  .brand{gap:10px;flex:1;}
+  .brand-logo{height:36px;width:36px;font-size:.85rem;}
+  .brand h2{font-size:1.1rem;}
+}
+
+/* Hero Section */
+.hero{
+  position:relative;
+  background:linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+  color:#f3f1ea;
+  padding:clamp(40px,8vw,64px) 0 clamp(36px,7vw,56px);
+}
+.hero-grid{display:flex;flex-direction:column;gap:24px;}
+.hero-photo{order:-1;max-width:600px;margin:0 auto;width:100%;}
+.hero h1{color:#fff;font-size:clamp(1.8rem,5.5vw,2.5rem);line-height:1.2;max-width:22ch;margin-bottom:12px;}
+.hero p.lead{margin-top:16px;color:#d6d1c2;font-size:clamp(.95rem,2.5vw,1.08rem);max-width:65ch;line-height:1.7;}
+.hero-photo img{
+  border:2px solid rgba(255,255,255,.25);
+  width:100%;
+  height:auto;
+  aspect-ratio:16/10;
+  object-fit:cover;
+}
+.gold-rule{width:56px;height:3px;background:var(--gold);margin-bottom:16px;}
+.hero-cta{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;}
+.btn{
+  display:inline-block;
+  padding:11px 22px;
+  font-size:.9rem;
+  font-weight:600;
+  border-radius:2px;
+  cursor:pointer;
+  transition:all .2s;
+  text-decoration:none;
+  border:none;
+}
+.btn-primary{background:var(--gold);color:var(--navy-deep);}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px);}
+.btn-secondary{background:transparent;color:#fff;border:1.5px solid var(--gold);}
+.btn-secondary:hover{background:rgba(184,145,47,.1);}
+
+/* Sections */
+section{padding:clamp(36px,7vw,56px) 0;}
+section + section{border-top:1px solid var(--rule);}
+.eyebrow{font-size:.78rem;color:var(--gold);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;}
+h2.section-title{font-size:clamp(1.5rem,4.5vw,2rem);margin-bottom:20px;max-width:25ch;}
+.section-desc{font-size:1rem;color:var(--light-gray);max-width:70ch;margin-bottom:28px;line-height:1.7;}
+
+/* Value Props Grid */
+.value-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:24px;
+  margin-top:28px;
+}
+.value-card{
+  background:#fff;
+  padding:28px;
+  border:1px solid var(--rule);
+  border-radius:3px;
+}
+.value-card h3{font-size:1.1rem;margin-bottom:12px;color:var(--navy);}
+.value-card p{font-size:.95rem;color:#555;line-height:1.7;}
+
+/* Featured Work */
+.featured-items{margin-top:28px;}
+.featured-item{
+  margin-bottom:32px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--rule);
+}
+.featured-item:last-child{border-bottom:none;}
+.featured-item h3{font-size:clamp(1.4rem,5vw,1.8rem);margin-bottom:10px;color:var(--navy);font-weight:700;line-height:1.3;}
+.featured-item p{color:#555;margin-bottom:12px;line-height:1.8;max-width:70ch;font-size:clamp(1rem,2.5vw,1.1rem);}
+
+/* Services Grid */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+  gap:1px;
+  background:var(--rule);
+  border:1px solid var(--rule);
+  margin-top:28px;
+}
+.service{
+  background:var(--cream);
+  padding:28px 24px;
+}
+.service h3{font-size:1.1rem;margin-bottom:12px;color:var(--navy);}
+.service p{font-size:.95rem;color:#555;line-height:1.7;}
+.service ul{margin-top:12px;padding-left:18px;font-size:.95rem;color:#555;}
+.service li{margin-bottom:6px;}
+
+/* Team Section */
+.team-members{margin-top:32px;}
+.team-member{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:28px;
+  align-items:start;
+  margin-bottom:36px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--rule);
+}
+.team-member:last-child{border-bottom:none;}
+.team-member-photo{overflow:hidden;}
+.team-member-photo img{
+  border:1px solid var(--rule);
+  width:100%;
+  height:280px;
+  object-fit:cover;
+}
+.team-member h3{font-size:1.15rem;margin-bottom:6px;}
+.team-member .title{font-size:.85rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:12px;}
+.team-member p{font-size:.95rem;color:#555;line-height:1.7;margin-bottom:10px;}
+
+@media (max-width:640px){
+  .team-member{grid-template-columns:1fr;gap:20px;}
+  .team-member-photo img{max-width:200px;margin:0 auto;width:100%;height:auto;}
+}
+
+/* Publications Grid */
+.books-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:24px;
+  margin-top:28px;
+}
+.book-card{
+  background:#fff;
+  padding:24px;
+  border:1px solid var(--rule);
+}
+.book-spine{
+  width:4px;
+  height:60px;
+  background:var(--gold);
+  margin-bottom:16px;
+}
+.book-year{
+  font-size:.8rem;
+  color:var(--gold);
+  font-weight:600;
+  margin-bottom:12px;
+}
+.book-card h3{font-size:1rem;margin-bottom:10px;line-height:1.4;}
+.book-card p{font-size:.9rem;color:#555;margin-bottom:14px;}
+
+/* Articles/Research */
+.articles-list{margin-top:28px;}
+.article-item{
+  padding:20px;
+  background:#fff;
+  border:1px solid var(--rule);
+  margin-bottom:16px;
+}
+.article-item h4{font-size:1rem;margin-bottom:6px;}
+.article-item p{font-size:.9rem;color:#555;}
+
+/* Press/Testimonials */
+.press-card{
+  background:#fff;
+  padding:28px;
+  border:1px solid var(--rule);
+  margin-top:28px;
+}
+.press-card h3{margin-bottom:14px;font-size:1.15rem;}
+.press-card p{font-size:.95rem;color:#555;margin-bottom:12px;line-height:1.7;}
+.press-meta{font-size:.85rem;color:var(--light-gray);margin-top:16px;font-style:italic;}
+
+/* Contact Section */
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+  gap:28px;
+  margin-top:28px;
+}
+.contact-card{
+  background:#fff;
+  padding:28px;
+  border:1px solid var(--rule);
+}
+.contact-card h3{margin-bottom:18px;}
+.contact-row{
+  margin-bottom:16px;
+  font-size:.95rem;
+}
+.contact-row span{
+  display:block;
+  font-weight:600;
+  color:var(--navy);
+  margin-bottom:4px;
+  font-size:.85rem;
+}
+.contact-row a{color:var(--gold);font-weight:600;}
+
+/* Footer */
+footer{
+  background:var(--navy-deep);
+  color:#e7e3d6;
+  padding:32px 0;
+  margin-top:56px;
+}
+footer .wrap{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:16px;
+  font-size:.9rem;
+}
+
+/* About Box */
+.about-box{
+  background:#fff;
+  padding:28px;
+  border:1px solid var(--rule);
+  margin-top:28px;
+}
+.about-box h3{margin-bottom:16px;}
+.about-box p{color:#555;margin-bottom:20px;line-height:1.7;}
+.about-box ul{color:#555;padding-left:20px;}
+.about-box li{margin-bottom:8px;line-height:1.6;}
+/*Book order line */
+.book-order{
+  font-size: 9rem;
+  color:var(--navy);
+  border-top:1px solid var(--rule);
+  padding-top: 12px;
+  margin-top: 4px;
+}
+.book-order a{
+  color: var(--gold);
+  font-weight: 600;
+  text-decoration: underline;
+
+}
+
+@media (max-width:480px){
+  .wrap{padding:0 18px;}
+  h2.section-title{font-size:1.3rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- Collapsible Navbar -->
+<header>
+  <div class="navbar">
+    <div class="brand">
+      <div class="brand-logo">
+        <img src="img/logo.jpg" alt="logo">
+      </div>
+      <h2>Yintab Strategy Consults</h2>
+    </div>
+    <nav id="desktopNav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#team">Team</a>
+      <a href="#work">Featured Work</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#team">Team</a>
+    <a href="#work">Featured Work</a>
+    <a href="#publications">Publications</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-photo">
+        <img src="img/PHOTO-2026-09-25-10-12-47.jpg" alt="Prof. Badejo at international diplomatic summit">
+      </div>
+      <div>
+        <div class="gold-rule"></div>
+        <h1>Building Peace. Strengthening Institutions. Supporting Humanitarianism.</h1>
+        <p class="lead">Yintab Strategy Consults delivers world-class expertise in peace mediation, peacebuilding, international development, governance reform, humanitarianism, human rights, and anti-corruption strategy, drawing on over 50 years of distinguished service across academia, the United Nations, the African Union, and national institutions.</p>
+        <div class="hero-cta">
+          <a href="#services" class="btn btn-primary">Explore Our Expertise</a>
+          <a href="#team" class="btn btn-secondary">Meet Prof. Badejo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE PROPOSITION -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Why Yintab Strategy Consults?</div>
+    <h2 class="section-title">World-Class Expertise. African Focus. Proven Impact.</h2>
+    <div class="value-grid">
+      <div class="value-card">
+        <h3>🎯 Institutional Design</h3>
+        <p>Nearly 24 years of UN service designing peace and governance structures across conflict zones in Somalia, Liberia, Guinea-Bissau, and Darfur.</p>
+      </div>
+      <div class="value-card">
+        <h3>⚖️ Mediation & Diplomacy</h3>
+        <p>Lead roles in the Djibouti Initiative, GEAP, and UN mediation support. Frameworks noted by UN Security Council Resolutions.</p>
+      </div>
+      <div class="value-card">
+        <h3>🤝 Humanitarianism & Rights</h3>
+        <p>Designed AU Humanitarian Agency framework; led UNECA study on four-pillar interlinkages; trained leaders across Africa.</p>
+      </div>
+      <div class="value-card">
+        <h3>🛡️ Anti-Corruption</h3>
+        <p>Chairman, NBA Anti-Corruption Committee. MoUs with ICPC and ACAN. National legislative reform and institutional capacity building.</p>
+      </div>
+      <div class="value-card">
+        <h3>📊 Research & Innovation</h3>
+        <p>Author of 8 books and 50+ academic publications. Situational Quadruple Nexus framework adopted by UN ECA and UNOSAA.</p>
+      </div>
+      <div class="value-card">
+        <h3>🌍 Continental Network</h3>
+        <p>Partnerships across African Union, ECOWAS, IGAD, and 20+ countries. Trusted advisor to presidents and international organizations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="eyebrow">Featured Work</div>
+    <h2 class="section-title">Landmark Projects & Impact</h2>
+    <div class="featured-items">
+      <div class="featured-item">
+        <h3>🕊️ The Djibouti Initiative: Designing Peace for Somalia</h3>
+        <p>Prof. Badejo played a primary role in designing, negotiating, and implementing the Djibouti Initiative (2000), which established national governance structures for Somalia after a decade of civil strife. This foundational work earned him the <strong>Djibouti National Order of 27 June 1977</strong> in 2025.</p>
+      </div>
+      <div class="featured-item">
+        <h3>📋 Constitutional Restoration in Guinea-Bissau</h3>
+        <p>As Chief of Staff to H.E. José Ramos-Horta (2013–2014), Prof. Badejo worked with the Timorese technical team to restore constitutional order through transparent elections, leading to the Governance Efficacy Amelioration Programme (GEAP), noted by UN Security Council Resolution 2157. In 2026, President Ramos-Horta conferred the <strong>Medal of the Order of Timor-Leste</strong>.</p>
+      </div>
+      <div class="featured-item">
+        <h3>🔗 Situational Quadruple Nexus (SQN) Framework</h3>
+        <p>Developed the SQN framework analyzing interlinkages between peace/security, development, human rights, and humanitarianism. Adopted by UN ECA, UNOSAA, and IDEP to train 146 mid-level leaders from 20 African countries.</p>
+      </div>
+      <div class="featured-item">
+        <h3>🏥 African Union Humanitarian Agency (AUHA)</h3>
+        <p>Designed the operational framework for the AUHA, implementing an African Union Summit Decision with improved Continental Early Warning and Early Action systems across ECOWAS, IGAD, and ECCAS.</p>
+      </div>
+      <div class="featured-item">
+        <h3>🤝 Governance Efficacy Amelioration Programme</h3>
+        <p>Led the conceptualization of post-election governance reform in Guinea-Bissau, noted by UN Security Council Resolution 2157. Coordinated AU, ECOWAS, and US Government in a unified reform effort.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT US -->
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">About Us</div>
+    <h2 class="section-title">Yintab Strategy Consults</h2>
+    <p class="section-desc">Founded in April 2017 by Prof. Babafemi A. Badejo upon his retirement from nearly 24 years of distinguished United Nations service, YSC brings the rigour, methodology, and strategic insight honed at the highest levels of international peace and governance to African institutions, governments, and civil society.</p>
+
+    <div class="about-box">
+      <h3>Our Vision</h3>
+      <p>An Africa where institutions are accountable, conflicts are mediated, and development is sustainable, grounded in the rule of law and respect for human dignity.</p>
+    </div>
+
+    <div class="about-box">
+      <h3>Our Mission</h3>
+      <p>To strengthen governance, build peace, advance human rights and humanitarian action, and promote accountability and good governance across and beyond Africa through world-class research, institutional design, and strategic advisory services.</p>
+    </div>
+
+    <div class="about-box">
+      <h3>Our Values</h3>
+      <ul>
+        <li><strong>Integrity:</strong> Highest ethical standards in all work</li>
+        <li><strong>Independence:</strong> Objective analysis free from political interference</li>
+        <li><strong>Impact:</strong> Tangible improvements in governance, peace, human rights, and humanitarian outcomes</li>
+        <li><strong>African Ownership:</strong> African solutions to African challenges</li>
+        <li><strong>Excellence:</strong> Rigour, evidence, and global best practice</li>
+        <li><strong>Human Dignity:</strong> Protection of human life and dignity at the centre</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="eyebrow">What We Offer</div>
+    <h2 class="section-title">Core Services</h2>
+    <p class="section-desc">Our team-based approach draws on a network of international experts with multi-disciplinary and specialized expertise across six core service areas.</p>
+
+    <div class="services-grid">
+      <div class="service">
+        <h3>🕊️ Peace Mediation & Preventive Diplomacy</h3>
+        <p>Expert mediation support, conflict analysis, and preventive diplomacy to regional organizations and governments.</p>
+        <ul>
+          <li>Mediation process design and facilitation</li>
+          <li>Conflict early warning and strategic foresight</li>
+          <li>Negotiation support for peace agreements</li>
+          <li>Post-conflict governance and reconciliation</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <h3>🏛️ Development & Governance Reform</h3>
+        <p>Design and strengthen institutions that deliver accountable, effective governance.</p>
+        <ul>
+          <li>Institutional diagnostics and gap analysis</li>
+          <li>Governance framework design and legal drafting</li>
+          <li>Public sector accountability systems</li>
+          <li>Strategic planning for public institutions</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <h3>🤝 Humanitarianism & Human Rights</h3>
+        <p>Expert advisory on humanitarian action, human rights protection, and interlinkages with peace and development.</p>
+        <ul>
+          <li>Humanitarian policy development</li>
+          <li>Early warning and early action systems</li>
+          <li>Human rights advocacy and protection</li>
+          <li>Training on international humanitarian law</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <h3>🛡️ Anti-Corruption & Accountability</h3>
+        <p>Effective anti-corruption strategies grounded in international standards and local realities.</p>
+        <ul>
+          <li>Anti-corruption policy and legislative drafting</li>
+          <li>UNCAC implementation support</li>
+          <li>Capacity building for anti-corruption agencies</li>
+          <li>Whistleblower protection frameworks</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <h3>📊 Research, Policy Innovation & Training</h3>
+        <p>Rigorous research, innovative policy frameworks, and high-level training for African leaders.</p>
+        <ul>
+          <li>Applied research and policy analysis</li>
+          <li>Framework development (SQN)</li>
+          <li>Executive training and professional development</li>
+          <li>Curriculum design and policy dialogue</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <h3>⚖️ Legal Advisory & Mediation Services</h3>
+        <p>Expert legal practice and alternative dispute resolution by a qualified legal practitioner and certified mediator.</p>
+        <ul>
+          <li>Legal drafting (legislation, treaties, agreements)</li>
+          <li>Mediation and arbitration</li>
+          <li>Constitutional and governance law</li>
+          <li>Human rights and rule of law advocacy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="wrap">
+    <div class="eyebrow">Our Team</div>
+    <h2 class="section-title">Distinguished Leadership & Advisors</h2>
+    <p class="section-desc">We deploy a team-based approach, drawing on a network of international experts with multi-disciplinary and specialized expertise across governance, peace, development, humanitarianism, and human rights.</p>
+
+    <div class="team-members">
+      <div class="team-member">
+        <div class="team-member-photo">
+          <img src="img/Picture2.jpg" alt="Prof. Babafemi A. Badejo">
+        </div>
+        <div>
+          <h3>Prof. Babafemi A. Badejo, Ph.D.</h3>
+          <div class="title">Founder & Lead Consultant</div>
+          <p>Nigerian academic, diplomat, legal practitioner, and peace mediator with 50+ years of engagement in governance, anti-corruption, and peacebuilding. Deputy Special Representative of the UN Secretary-General for Somalia. Over 24 years of senior UN service.</p>
+          <p><strong>Career Highlights:</strong> Political Science professor at University of Lagos; UN roles across Somalia, Liberia, Guinea-Bissau, Darfur; African Union Humanitarian Agency framework design; UN Economic Commission for Africa consultant.</p>
+          <p><strong>Honours (2025-2026):</strong> Medal of the Order of Timor-Leste, Djibouti National Order, Nelson Mandela Distinguished Africanist Award, Presidential Commendation.</p>
+          <p><a href="Badejo_CV_June_2026_final.pdf" style="color:var(--gold);font-weight:600;text-decoration:underline;" download>Download CV →</a></p>
+        </div>
+      </div>
+
+      <div class="team-member">
+        <div class="team-member-photo">
+          <img src="img/Picture5.jpg" alt="Mr. Bunmi Makinwa">
+        </div>
+        <div>
+          <h3>Mr. Bunmi Makinwa</h3>
+          <div class="title">Senior Advisor, Communications & Development Strategy</div>
+          <p>Nigerian business executive with two decades of leadership in international development, public health, and media. Former Africa Regional Director of UNFPA, Director of UNAIDS New York Office, and UNAIDS Representative to the African Union.</p>
+          <p><strong>Expertise:</strong> Led high-stakes engagements in 60+ countries. Expert on population, health, and sustainable development policy.</p>
+        </div>
+      </div>
+
+      <div class="team-member">
+        <div class="team-member-photo">
+          <img src="img/Picture6.jpg" alt="Dr. Ayodele Aderinwale">
+        </div>
+        <div>
+          <h3>Dr. Ayodele Patrick Aderinwale, MFR</h3>
+          <div class="title">Senior Advisor, Leadership & Governance</div>
+          <p>Nigeria's foremost development specialist and governance expert with 30+ years at the intersection of leadership development, institutional reform, and enterprise. Executive Director of Africa Leadership Forum.</p>
+          <p><strong>Key Contributions:</strong> Co-created CSSDCA, adopted by AU in 2002. Vice President, ECOSOCC of AU. National Honour: MFR (2006).</p>
+        </div>
+      </div>
+
+      <div class="team-member">
+        <div class="team-member-photo">
+          <img src="img/Picture7.jpg" alt="Ambassador Nureldin Satti">
+        </div>
+        <div>
+          <h3>Ambassador Nureldin M. H. Satti</h3>
+          <div class="title">Senior Advisor, Peace Mediation & Conflict Resolution</div>
+          <p>Seasoned Sudanese diplomat with 40+ years in peace mediation and international diplomacy. Principal Deputy SRSG at UN missions to Burundi, Acting SRSG (2006). Ambassador of Sudan to France, USA, Vatican, and more.</p>
+        </div>
+      </div>
+
+      <div class="team-member">
+        <div class="team-member-photo">
+          <img src="img/Picture8.jpg" alt="Prof. Dunera Ilako">
+        </div>
+        <div>
+          <h3>Prof. Dunera Rahel Ilako</h3>
+          <div class="title">Senior Advisor, Health Systems & Institutional Development</div>
+          <p>Distinguished Kenyan ophthalmologist and academic with 20+ years in clinical practice, medical education, and institutional development. Professor of Ophthalmology, University of Nairobi. Founding President, College of Ophthalmology ECSA.</p>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="team-member-photo">
+          <img src="img/Picture10.jpg" alt="Ameh Abraham Daniel">
+        </div>
+        <div>
+          <h3>Ameh Abraham Daniel</h3>
+          <div class="title"> Special Adviser & Researcher</div>
+          <p>Special Adviser & Researcher to Prof. Badejo. Primary liaison for consultations, research initiatives, and strategic advisory projects. Contact point for all partnerships and inquiries and engagement oppurtunities</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="wrap">
+    <div class="eyebrow">Publications</div>
+    <h2 class="section-title">Books, Research & Thought Leadership</h2>
+    <p class="section-desc">Prof. Badejo has authored 8 books, over 50 academic publications, and 150+ opinion pieces spanning peace, governance, humanitarianism, human rights, and development.</p>
+
+    <h3 style="margin-top:28px;margin-bottom:16px;font-size:1.2rem;">Recent Books</h3>
+    <div class="books-grid">
+      <div class="book-card">
+        <div class="book-spine"></div>
+        <div class="book-year">2025</div>
+        <h3>Somalia Just Before Al-Shabab: Why Peace Was Elusive</h3>
+        <p>An analysis of Somalia's peace process before the emergence of Al-Shabab, examining conflict dynamics and governance challenges.</p>
+        <p class="book-order">To order this book, email Prof. Badejo: <a href="mailto:ffembee@yahoo.com"><br>ffembee@yahoo.com</a></p>
+      </div>
+      <div class="book-card">
+        <div class="book-spine"></div>
+        <div class="book-year">2024</div>
+        <h3>Nigeria Corruption Perception Data</h3>
+        <p>Original survey of 1,500 Nigerians providing empirical evidence on corruption perceptions across society.</p>
+         <p class="book-order">To order this book, email Prof. Badejo: <a href="mailto:ffembee@yahoo.com"><br>ffembee@yahoo.com</a></p>
+      </div>
+      <div class="book-card">
+        <div class="book-spine"></div>
+        <div class="book-year">2023</div>
+        <h3>Institutions and Popular Will in Africa's Search for Democracy, Development and Peace</h3>
+        <p>Analysis of how democratic institutions shape Africa's development trajectory.</p>
+         <p class="book-order">To order this book, email Prof. Badejo: <a href="mailto:ffembee@yahoo.com"><br>ffembee@yahoo.com</a></p>
+      </div>
+      <div class="book-card">
+        <div class="book-spine"></div>
+        <div class="book-year">2022</div>
+        <h3>Mediating for Peace in Africa</h3>
+        <p>Festschrift featuring essays on Africa's peace mediation experience and diplomatic leadership.</p>
+         <p class="book-order">To order this book, email Prof. Badejo: <a href="mailto:ffembee@yahoo.com"><br>ffembee@yahoo.com</a></p>
+      </div>
+      <div class="book-card">
+        <div class="book-spine"></div>
+        <div class="book-year">2022</div>
+        <h3>Nigerians' Views on National Turmoil</h3>
+        <p>Application of SQN framework analyzing Nigerian perceptions of governance and humanitarian challenges.</p>
+         <p class="book-order">To order this book, email Prof. Badejo: <a href="mailto:ffembee@yahoo.com"><br>ffembee@yahoo.com</a></p>
+      </div>
+      <div class="book-card">
+        <div class="book-spine"></div>
+        <div class="book-year">2006</div>
+        <h3>Raila Odinga: An Enigma in Kenyan Politics</h3>
+        <p>Comprehensive biography and bestseller in Kenya spanning post-independence political history.</p>
+         <p class="book-order">To order this book, email Prof. Badejo: <a href="mailto:ffembee@yahoo.com"><br>ffembee@yahoo.com</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background:#fff;">
+  <div class="wrap">
+    <div class="eyebrow">What Others Say</div>
+    <h2 class="section-title">Testimonials & Recognition</h2>
+    <div style="margin-top:28px;">
+      <div class="press-card">
+        <p style="font-style:italic;color:#555;margin-bottom:14px;font-size:1.05rem;line-height:1.8;">"Prof. Badejo's book on Kenya is compulsory reading for those seeking to understand Kenyan politics with all their contradictions, challenges and possibilities."</p>
+        <p style="color:var(--navy);font-weight:600;">Ibrahim A. Gambari</p>
+        <p style="color:var(--light-gray);font-size:.9rem;">Former Under-Secretary-General for Political Affairs, United Nations</p>
+      </div>
+      <div class="press-card">
+        <p style="font-style:italic;color:#555;margin-bottom:14px;font-size:1.05rem;line-height:1.8;"><em>Somalia Just Before Al-Shabaab</em> is an indispensable source book for academics and the international community."</p>
+        <p style="color:var(--navy);font-weight:600;">David Stephen</p>
+        <p style="color:var(--light-gray);font-size:.9rem;">Former UN Representative to Somalia</p>
+      </div>
+      <div class="press-card">
+        <p style="font-style:italic;color:#555;margin-bottom:14px;font-size:1.05rem;line-height:1.8;">"Prof. Badejo is a shining example of making the world better through reflective ideas on Africa's democratic and development experiences."</p>
+        <p style="color:var(--navy);font-weight:600;">Toyin Falola</p>
+        <p style="color:var(--light-gray);font-size:.9rem;">Professor, University of Texas at Austin</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Get In Touch</div>
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-desc">For consultations, speaking engagements, or enquiries about our services, reach us directly. We are available for 24/7 engagement.</p>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Direct Contact</h3>
+        <div class="contact-row">
+          <span>Prof. Babafemi A. Badejo</span>
+          <a href="mailto:ffembee@yahoo.com">ffembee@yahoo.com</a>
+        </div>
+        <div class="contact-row">
+          <span>Phone / WhatsApp</span>
+          <a href="tel:+2348055331448">+234 805 533 1448</a>
+        </div>
+        <div class="contact-row">
+          <span>Phone (US)</span>
+          <a href="tel:+12148371711">+1 (214) 837-1711</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Special Advisor to Lead Consultant</h3>
+        <div class="contact-row">
+          <span>Ameh Abraham Daniel</span>
+          <a href="mailto:Amehdanielabraham@gmail.com">Amehdanielabraham@gmail.com</a>
+        </div>
+        <div class="contact-row">
+          <span>Phone</span>
+          <a href="tel:+2347039510611">+234 703 951 0611</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Headquarters</h3>
+        <div class="contact-row">
+          <span>Nigeria</span>
+          <p>YINTAB Compound, TOS Benson Estate Road, Oja Bus Stop, Ikorodu, Lagos, Nigeria</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>&copy; 2025 Yintab Strategy Consults (YSC). All rights reserved.</div>
+    <div>Lagos, Nigeria | Excellence in Governance</div>
+  </div>
+</footer>
+
+<script>
+// Hamburger Menu Toggle
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+const mobileLinks = mobileNav.querySelectorAll('a');
+
+hamburger.addEventListener('click', () => {
+  mobileNav.classList.toggle('active');
+  hamburger.classList.toggle('active');
+});
+
+// Close menu when link clicked
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mobileNav.classList.remove('active');
+    hamburger.classList.remove('active');
+  });
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+
+</body>
+</html>
